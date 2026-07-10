@@ -1,0 +1,19 @@
+{
+  "name": "remboursement",
+  "version": "1.0.0",
+  "description": "Page de demande de remboursement",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "public": "node start-public.js",
+    "setup": "node setup.js",
+    "auto": "node setup.js && node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "localtunnel": "^2.0.2",
+    "nodemailer": "^6.9.15"
+  }
+}

